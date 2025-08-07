@@ -23,6 +23,9 @@ export default function MatchCard({ match }) {
             Date: {new Date(match.utcDate).toLocaleString('en-GB', { dateStyle: 'full', timeStyle: 'short' })}
         </p>
         <p className={styles.status}>Status: {match.status}</p>
+        {match.league && (
+          <p className={styles.league}>{match.league}</p>
+        )}
         
         </div>
     );

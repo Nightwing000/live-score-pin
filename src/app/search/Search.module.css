@@ -1,0 +1,48 @@
+.searchPage {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.searchContainer {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.clearButton {
+  background: #ff4444;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.clearButton:hover {
+  background: #ff6666;
+}
+
+.resultsInfo {
+  margin: 15px 0;
+  color: #666;
+  font-style: italic;
+}
+
+.noResults {
+  text-align: center;
+  color: #888;
+  margin-top: 40px;
+}
+
+.matchList {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
