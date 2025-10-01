@@ -23,6 +23,40 @@ export async function GET() {
       bundesligaRes.ok ? bundesligaRes.json() : { matches: [] }
     ]);
 
+    // Debug logging
+    console.log('UCL matches:', uclData.matches?.length || 0);
+    console.log('Premier League matches:', plData.matches?.length || 0);
+    console.log('La Liga matches:', laLigaData.matches?.length || 0);
+    console.log('Bundesliga matches:', bundesligaData.matches?.length || 0);
+    
+    // Debug UCL response status
+    console.log('UCL API status:', uclRes.status);
+    console.log('UCL API ok:', uclRes.ok);
+    
+    // Check UCL match statuses
+    if (uclData.matches?.length > 0) {
+      const uclStatuses = {};
+      uclData.matches.forEach(match => {
+        uclStatuses[match.status] = (uclStatuses[match.status] || 0) + 1;
+      });
+      console.log('UCL match statuses:', uclStatuses);
+      
+      // Find scheduled UCL matches
+      const scheduledUCL = uclData.matches.filter(m => m.status === 'SCHEDULED');
+      console.log('Scheduled UCL matches:', scheduledUCL.length);
+      
+      if (scheduledUCL.length > 0) {
+        console.log('Next UCL match:', {
+          home: scheduledUCL[0].homeTeam.name,
+          away: scheduledUCL[0].awayTeam.name,
+          date: scheduledUCL[0].utcDate,
+          status: scheduledUCL[0].status
+        });
+      }
+    } else {
+      console.log('UCL response structure:', Object.keys(uclData));
+    }
+
     // Combine all matches and add league info
     const allMatches = [
       ...(uclData.matches || []).map(match => ({ ...match, league: 'UEFA Champions League' })),
